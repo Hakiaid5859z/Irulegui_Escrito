@@ -1,0 +1,24 @@
+
+CREATE DATABASE Inmobiliarias;
+USE Inmobiliarias;
+
+CREATE TABLE Propiedades (
+    Id INT PRIMARY KEY,
+    Direccion VARCHAR(90) NOT NULL,
+    Precio INT NOT NULL,
+    Tipo ENUM('Terreno', 'Mansion', 'Monoambiente') NOT NULL,
+    Metros_Cuadrados VARCHAR(50)
+);
+
+CREATE TABLE Ventas (
+    Id_Venta INT PRIMARY KEY,
+    Id_Prop INT,
+    Precio INT NOT NULL,
+    Descuento INT NOT NULL,
+    IVA INT NOT NULL,
+    Precio_Total INT NOT NULL,
+    CONSTRAINT fk_Id_Prop FOREIGN KEY (Id_Prop)
+    REFERENCES Propiedades(Id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
